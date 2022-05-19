@@ -5,9 +5,244 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: "https://media.istockphoto.com/photos/pastel-pink-brick-wall-texture-background-picture-id1300828101?k=20&m=1300828101&s=612x612&w=0&h=Dy006vXIQ89MDCGhb8VGyAsxEdzl9M9aVJQ9EtzPw9c=";
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.card {
+  width: 190px;
+  padding: 1.9rem 1.2rem;
+  text-align: center;
+  background: #2a2b38;
+  
+ }
+ 
+ .field {
+  margin-top: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  background-color: #1f2029;
+  border-radius: 4px;
+  padding: .5em 1em;
+ }
+ 
+ .input-icon {
+  height: 1em;
+  width: 1em;
+  fill: #ffeba7;
+ }
+ 
+ .input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #d3d3d3;
+ }
+ 
+
+ .title {
+  margin-bottom: 1rem;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #f5f5f5;
+ }
+ 
+
+ .btn {
+  margin: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: .8em;
+  text-transform: uppercase;
+  padding: 0.6em 1.2em;
+  background-color: #ffeba7;
+  color: #5e6681;
+  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+  transition: all .3s ease-in-out;
+ }
+ .btn:hover {
+  background-color: #5e6681;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+ }
+ .btn-link {
+  color: #f5f5f5;
+  display: block;
+  font-size: .75em;
+  transition: color .3s ease-out;
+ }
+ 
+ /*Hover & focus*/
+ .field input:focus::placeholder {
+  opacity: 0;
+  transition: opacity .3s;
+ }
+
+ .btn2 {
+   float: right;
+  margin: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: .8em;
+  text-transform: uppercase;
+  padding: 0.6em 1.2em;
+  background-color: #ffeba7;
+  color: #5e6681;
+  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+  transition: all .3s ease-in-out;
+ }
+ .btn2:hover {
+  background-color: #5e6681;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+ }
+ 
+ 
+ .btn-link:hover {
+  color: #ffeba7;
+ }
+ 
+ /* Add a black background color to the top navigation */
+.navbar {
+  background-color: #1f2029;
+  overflow: hidden;
+  text-size-adjust  : bold;
+  font-size: .75em;
+
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+  
+}
+
+/* Add a color to the active/current link */
+.navbar a.active {
+  background-color: #ffeba7;
+  color: #5e6681;
+  float: left;
+}
+
+.navbar a.active:hover {
+  background-color: #5e6681;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+ }
+
+.loginlink{
+  float: right;
+  text-decoration: none;
+
+}
+ 
+
+ .arrow-up {
+  border: solid #ffeba7;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 6px;
+  margin-left: 10px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+
+}
+
+.contactUs{
+  left: 0;
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  background-color: #1f2029;
+  color: #f5f5f5;
+}
+
+.contactUs-icon{
+  margin: 3px;
+  height: 1em;  
+  background-color: white;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+
+.aboutUs{
+  margin: 10%;
+  background: #2a2b38;
+  color: #f5f5f5;
+  padding: 10px;
+  box-shadow: 0 8px 24px 0 rgb(42 43 56);
+
+}
+.title{
+  color: #ffeba7;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+
+}
+
+.login-grid{
+  display: grid;
+  column-gap: 50px;
+  justify-items: center;
+  margin-top: 10%;
+
+}
+.feed-grid{
+  display: grid;
+  column-gap: 50px;
+  justify-items: center;
+  /* margin-top: 10%; */
+  justify-content: start;
+  column-gap: 50px;
+
+
+}
+.post-template{
+  display: grid;
+  padding: 10px;
+  background: #2a2b38;
+  color: #f5f5f5;
+  box-shadow: 0 8px 24px 0 rgb(42 43 56);
+  column-gap: 50px;
+
+}
+.display-post{
+  display: grid;
+  padding: 10px;
+  background: #2a2b38;
+  color: #f5f5f5;
+  box-shadow: 0 8px 24px 0 rgb(42 43 56);
+}
+
+.profile{
+  display: grid;
+  padding: 10px;
+  background: #2a2b38;
+  color: #f5f5f5;
+  box-shadow: 0 8px 24px 0 rgb(42 43 56);
+  column-gap: 50px;
+
 }
