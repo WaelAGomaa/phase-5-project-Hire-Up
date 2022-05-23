@@ -5,7 +5,8 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import ContactUs from "./ContactUs";
 import SignUp from "./SignUp";
-import Feed from "./Feed";
+// import PostFeed from "./PostFeed";
+import CreatePost from "./CreatePost";
 import Profile from "./Profile";
 import "../App.css";
 
@@ -14,27 +15,29 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar  setCurrentUser={setCurrentUser} currentUser={currentUser} />
       <Switch>
         <Route path="/Home">
           <Home />
         </Route>
-
+        {/* <Route path="/">
+          <Home />
+        </Route> */}
         <div className="login-grid">
           <Route path="/Login" setCurrentUser={setCurrentUser}>
-            <Login />
+            <Login setCurrentUser={setCurrentUser} currentUser={currentUser} />
           </Route>
           <Route path="/SignUp" setCurrentUser={setCurrentUser}>
-            <SignUp />
+            <SignUp  currentUser={currentUser} />
           </Route>
         </div>
       </Switch>
       {/* <div className="feed-grid"> */}
       <Route path="/Feed">
-        <Feed />
+        <CreatePost />
       </Route>
       <Route path="/Profile">
-        <Profile />
+        <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}  />
       </Route>
       {/* </div> */}
       <ContactUs />

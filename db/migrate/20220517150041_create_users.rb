@@ -12,9 +12,9 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :talent
       t.string :instagram
       t.string :picture
-      t.text :bio
+      t.string :bio
       t.integer :age
-      t.integer :phone_number
+      t.string :phone_number
 
       t.timestamps
     end

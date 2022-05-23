@@ -1,28 +1,52 @@
 import { Link } from "react-router-dom";
+// import { FaHome } from "react-icons/fa";
+function NavBar({ setCurrentUser, currentUser }) {
 
-function NavBar() {
 
+  console.log(currentUser);
+
+  const logout = () => {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(() => {
+
+      setCurrentUser(null);
+    });
+  };
   return (
     <>
-      <div className="navbar">
-        <Link className="active" to="/Home">
+      {currentUser ? (
+    <>
+        <div className="navbar">
+        {/* <Link className="active" to="/Home">
+          Home 
+          <FaHome />
+        </Link> */}
+        <Link className="active" to="/Feed">
+          Feed
+        </Link>
+        <button className="logoutlink" onClick={logout}>Logout</button>
+        {/* <Link className="loginlink" to="/Logout">
+          Logout
+        </Link> */}
+        <Link className="loginlink" to="/Profile">
+          Profile
+        </Link>
+      </div>
+    
+      </>
+      ) : (
+        <>
+    <div className="navbar">
+           <Link className="active" to="/Home">
           Home
         </Link>
         <Link className="loginlink" to="/Login">
           Login
         </Link>
       </div>
-      <div className="navbar">
-        <Link className="active" to="/Feed">
-          Feed
-        </Link>
-        <Link className="loginlink" to="/Logout">
-          Logout
-        </Link>
-        <Link className="loginlink" to="/Profile">
-            Profile
-        </Link>
-      </div>
+    </>
+      )}
     </>
   );
 }

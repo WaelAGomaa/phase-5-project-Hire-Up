@@ -1,24 +1,18 @@
 import { useState } from "react";
+import Feed from "./Feed";
 
-function SignUp({ setCurrentUser }) {
+function SignUp({ setCurrentUser , currentUser}) {
   const [user, setUser] = useState({
     username: "",
     password: "",
-    // passwordConfirm: "",
     email: "",
     industry: "",
   });
 
-  function handleErrors(response) {
-    if (!response.ok) {
-      throw Error(response.errors);
-    }
-    return response;
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // user.password === user.passwordConfirm ?
+
     fetch("/users", {
       method: "POST",
       headers: {
@@ -33,10 +27,14 @@ function SignUp({ setCurrentUser }) {
     })
       .then((r) => r.json())
       .then((r) => setUser);
-    // .catch(error => alert(error)) : alert("passwords must match!")
+
   }
 
   return (
+    <>
+    {currentUser ? (
+        <Feed />
+      ) : (
     <div className="card">
       <h4 className="title">Sign Up!</h4>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -84,6 +82,8 @@ function SignUp({ setCurrentUser }) {
         <input className="btn" type="submit" value="Sign Up!" />
       </form>
     </div>
+  )}
+  </>
   );
 }
 export default SignUp;
