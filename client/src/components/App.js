@@ -5,13 +5,14 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import ContactUs from "./ContactUs";
 import SignUp from "./SignUp";
-// import PostFeed from "./PostFeed";
+import PostFeed from "./PostFeed";
 import CreatePost from "./CreatePost";
 import Profile from "./Profile";
 import "../App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
+console.log(currentUser)
 
   return (
     <div className="App">
@@ -24,7 +25,7 @@ function App() {
           <Home />
         </Route> */}
         <div className="login-grid">
-          <Route path="/Login" setCurrentUser={setCurrentUser}>
+          <Route path="/Login" >
             <Login setCurrentUser={setCurrentUser} currentUser={currentUser} />
           </Route>
           <Route path="/SignUp" setCurrentUser={setCurrentUser}>
@@ -34,7 +35,7 @@ function App() {
       </Switch>
       {/* <div className="feed-grid"> */}
       <Route path="/Feed">
-        <CreatePost />
+        <PostFeed currentUser={currentUser}/>
       </Route>
       <Route path="/Profile">
         <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}  />

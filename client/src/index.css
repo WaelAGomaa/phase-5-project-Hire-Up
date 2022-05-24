@@ -232,7 +232,9 @@ padding-right: 200px;
 }
 .contactUs{
   left: 0;
-  position: fixed;
+  /* position: fixed; */
+  padding-top: 11px;
+  position: sticky;
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -251,6 +253,7 @@ padding-right: 200px;
 
 .aboutUs{
   margin: 10%;
+  margin-bottom: 182px;
   background: #2a2b38;
   color: #f5f5f5;
   padding: 10px;
@@ -270,6 +273,7 @@ padding-right: 200px;
   column-gap: 50px;
   justify-items: center;
   margin-top: 10%;
+  margin-bottom: 140px;
 
 }
 .feed-grid{
@@ -297,7 +301,7 @@ padding-right: 200px;
   background: #2a2b38;
   color: #f5f5f5;
   box-shadow: 0 8px 24px 0 rgb(42 43 56);
-
+  margin-bottom: 6px;
 }
 .posts{
 overflow-y: scroll;
@@ -346,4 +350,10 @@ overflow-y: scroll;
 
  .image{
   display: grid;
+ }
+
+ .postForm{
+  position: fixed;
+  top: 67px;
+  left: 12%;
  }

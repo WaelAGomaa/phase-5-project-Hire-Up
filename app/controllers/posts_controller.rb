@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
     def index
-        render json: Post.all
-        # , include: ['title', 'body'], status: :ok
+        render json: Post.all , include: ['title', 'body'], status: :ok
     end
 
     def show

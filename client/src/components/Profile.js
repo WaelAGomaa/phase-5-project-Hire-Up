@@ -41,7 +41,7 @@ function Profile({ setCurrentUser, currentUser }) {
         <>
           <div className="profile">
             <div>
-              <h3>Hello {currentUser.username}</h3>
+              <h3>Welcome <h3 style={{color: '#ffeba7'}}>{currentUser.username}</h3></h3>
               {isShow ? (
                 <form onClick={handleSubmit}>
                   <input
