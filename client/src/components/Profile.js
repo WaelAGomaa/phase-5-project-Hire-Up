@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FaPhone, FaEnvelope, FaInstagram  } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaInstagram } from "react-icons/fa";
 import Home from "./Home";
 
 function Profile({ setCurrentUser, currentUser }) {
   const [isShow, setShow] = useState(false);
+  const [isShowTwo, setShowTwo] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -34,6 +35,9 @@ function Profile({ setCurrentUser, currentUser }) {
   function toggleShow() {
     setShow(!isShow);
   }
+  function toggleShowTwo() {
+    setShowTwo(!isShowTwo);
+  }
   // const handleFileInput = () => {}
   return (
     <>
@@ -41,25 +45,9 @@ function Profile({ setCurrentUser, currentUser }) {
         <>
           <div className="profile">
             <div>
-              <h3>Welcome <h3 style={{color: '#ffeba7'}}>{currentUser.username}</h3></h3>
+              <h3>Welcome {currentUser.username} !</h3>
               {isShow ? (
                 <form onClick={handleSubmit}>
-                  <input
-                    type="file"
-                    id="picture"
-                    accept="image/png, image/gif, image/jpeg"
-                    multiple
-                    // value={currentUser.picture}
-                    // onChange={handleFileInput}
-                    onChange={(e) => {
-                      setCurrentUser((currentUser) => ({
-                        ...currentUser,
-                        picture: e.target.files[0],
-                      }));
-                    }}
-                    className="input-field-profile"
-                    style={{ border: "none" }}
-                  />
                   {/* <input type="submit"></input> */}
                   <input
                     type="text"
@@ -182,20 +170,38 @@ function Profile({ setCurrentUser, currentUser }) {
               {/* <input type="button" className="btn" value="Edit" onclick={toggleShow}/> */}
             </div>
             <div className="Images">
-              <img
-                src={currentUser.picture}
-                style={{ width: "20%", margin: "0 auto" }}
-              />
-              <img
-                src={currentUser.picture}
-                style={{ width: "20%", margin: "0 auto" }}
-              />
-              <img src="http://placehold.it/" />
-              <img src="http://placehold.it/" />
-              <img
-                style={{ width: "10%", margin: "0 auto", borderradius: "30px" }}
-                src="http://www.transparentpng.com/thumb/logo-instagram/YfpFOL-logo-instagram-free-transparent.png"
-              />
+              <form onClick={handleSubmit}>
+                  <img
+                    src={currentUser.picture}
+                    style={{
+                      width: "70%",
+                      hight: "70%",
+                      marginTop: "20px",
+                      borderRadius: "50%",
+                      textAlign: "center",
+                    }}
+                  />
+                      
+                      {isShowTwo ? (
+                        <>
+                <input
+                  required
+                  style={{ marginTop: "50px", }}
+                  type="url"
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      picture: e.target.value,
+                    })
+                  }
+                  />
+                  <input type="submit" className="btn" value="Save" style={{  marginTop: "50px",}} />
+                  </>
+                   ) : (
+                  <button className="btn" onClick={toggleShowTwo} style={{  marginTop: "50px",}}>Change Profile Picture</button> 
+                  ) }
+                  
+              </form>
             </div>
             <div>
               <h3>{currentUser.bio}</h3>

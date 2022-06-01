@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import CreatePost from "./CreatePost";
+// import CreatePost from "./CreatePost";
+import Home from "./Home";
 
 function Login({ setCurrentUser, currentUser }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,7 +31,7 @@ function Login({ setCurrentUser, currentUser }) {
   return (
     <>
       {currentUser ? (
-        <CreatePost />
+        <Home />
       ) : (
         <div className="card">
           <h4 className="title">Log In!</h4>

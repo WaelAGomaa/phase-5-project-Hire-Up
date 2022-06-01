@@ -43,8 +43,27 @@ Post.create(
 )
 Post.create(
     title: 'Seed trial',
-    body: '#3',
+    body: 'I am a seed',
     user_id: 1
 )
-
+Comment.create(
+    user_id: 1,
+    post_id: 1, 
+    text: 'I am a comment'
+)
+Comment.create(
+    user_id: 2,
+    post_id: 1,
+    text: 'I am another comment'
+)
+Comment.create(
+    user_id: 1,
+    post_id: 2,
+    text: 'I am a potato'
+)
+Comment.create(
+    user_id: 2,
+    post_id: 2,
+    text: 'omg guess'
+)
 puts "✅ Done seeding!"

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :conversations, :foreign_key => :user_a_id
     # messages relationship
     has_many :messagee, foreign_key: :receiver_id, class_name: 'Message'  
     has_many :senders, through: :messagee
@@ -12,6 +13,7 @@ class User < ApplicationRecord
 
     # User posts
     has_many :posts
+    has_many :comments
 
     
     validates :username, uniqueness: true

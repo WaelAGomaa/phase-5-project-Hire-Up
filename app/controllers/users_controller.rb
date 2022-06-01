@@ -3,9 +3,9 @@ class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
-    def index 
+    def index
         @users = User.all
-        render json: @users, status: :ok
+        render json: @users
     end
 
     def create
@@ -16,6 +16,20 @@ class UsersController < ApplicationController
     def show
         render json: @current_user
     end
+
+    # scope :between, -> (user_a_id,user_b_id) do
+    #     where(“(conversations.user_a_id = ? AND conversations.user_b_id =?) OR 
+    #     (conversations.user_a_id = ? AND conversations.user_b_id =?)”, user_a_id,user_b_id, user_a_id, user_b_id)
+    #     end
+        # def show
+        #   user = User.find_by(id: session[:user_id])
+        #   if user
+        #     render json: user
+        #   else
+        #     render json: { error: "Not authorized" }, status: :unauthorized
+        #   end
+        # end
+
 
     def get_receiver
         receiver = User.find(params[:id])

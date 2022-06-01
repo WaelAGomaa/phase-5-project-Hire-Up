@@ -357,3 +357,17 @@ overflow-y: scroll;
   top: 67px;
   left: 12%;
  }
+
+ .Xbtn{
+  top: 0;
+  float: right;
+  text-decoration: none;
+  color: #f85a5a;
+  margin-top: -112px;
+  background: #2a2b38;
+  border: none;
+  font-size: 1.2em;
+ }
+ .Xbtn:hover {
+  color: #ffeba7;
+ }
