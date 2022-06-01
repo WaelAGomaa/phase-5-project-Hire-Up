@@ -13,18 +13,13 @@ class PostsController < ApplicationController
         render json: post, status: :created
     end
 
-    # def update
-    #     post = Post.find(params[:id])
-    #     post.update!(post_params)
-    #     render json: post, status: :ok
-    # end
-def update
-    post = Post.find(params[:id])
-    if post.update(post_params)
-      render json: post, status: :ok
-    else
-      render json: post.errors, status: :unprocessable_entity
-    end
+    def update
+        post = Post.find(params[:id])
+        if post.update(post_params)
+        render json: post, status: :ok
+        else
+        render json: post.errors, status: :unprocessable_entity
+        end
   end
     
 
@@ -39,4 +34,5 @@ def update
     def post_params
         params.permit(:title, :body, :user_id)
     end 
+
 end

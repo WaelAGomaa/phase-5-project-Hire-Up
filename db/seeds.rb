@@ -11,7 +11,7 @@ User.create(
     pronouns: 'he/him',
     talent: 'programming',
     instagram: 'waelgomaa',
-    picture: 'https://assets.teenvogue.com/photos/586fb5d4f77a0c673d72629f/1:1/w_2417,h_2417,c_limit/GettyImages-165443495.jpg',
+    picture: 'https://www.rollingstone.com/wp-content/uploads/2011/03/britneyspears.jpg',
     bio: 'I am a programmer',
     age: '25',
     phone_number: '0123456789')

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CreatePost from "./CreatePost";
 import Feed from "./Feed";
 import Home from "./Home";
+
 function PostFeed({ currentUser }) {
   const [posts, setPosts] = useState([]);
 
@@ -20,19 +21,25 @@ function PostFeed({ currentUser }) {
       posts={post}
       user_id={post.user_id}
       comments={post.comments}
+      username={post.comments}
       setPosts={setPosts}
+      postsState={posts}
       currentUser={currentUser}
-
     />
   ));
-  console.log(posts);
+
+
   return (
     <>
       {currentUser ? (
         <>
           <div className="feed-grid">
             <div>
-              <CreatePost currentUser={currentUser} />
+              <CreatePost
+                currentUser={currentUser}
+                setPosts={setPosts}
+                postsState={posts}
+              />
             </div>
             <main>
               <div className="post-container">
@@ -42,7 +49,7 @@ function PostFeed({ currentUser }) {
           </div>
         </>
       ) : (
-         <Home />
+        <Home />
       )}
     </>
   );

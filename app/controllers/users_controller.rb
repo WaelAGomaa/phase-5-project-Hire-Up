@@ -17,18 +17,7 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
-    # scope :between, -> (user_a_id,user_b_id) do
-    #     where(“(conversations.user_a_id = ? AND conversations.user_b_id =?) OR 
-    #     (conversations.user_a_id = ? AND conversations.user_b_id =?)”, user_a_id,user_b_id, user_a_id, user_b_id)
-    #     end
-        # def show
-        #   user = User.find_by(id: session[:user_id])
-        #   if user
-        #     render json: user
-        #   else
-        #     render json: { error: "Not authorized" }, status: :unauthorized
-        #   end
-        # end
+
 
 
     def get_receiver
@@ -46,6 +35,14 @@ class UsersController < ApplicationController
         current_user.destroy
         head :no_content
     end
+
+    # scope :between, -> (user_a_id,user_b_id) do
+    #     where((conversations.user_a_id =  AND conversations.user_b_id =)
+    #      OR (conversations.user_a_id =  AND conversations.user_b_id =)
+    #      , user_a_id,user_b_id, user_a_id, user_b_id)
+    #     end
+    # end
+        
     private
 
     def user_params

@@ -1,7 +1,20 @@
 import { useState } from "react";
 import DisplayComment from "./DisplayComment";
 import { Link, BrowserRouter } from "react-router-dom";
-function Feed({ title, body, posts, user_id, key, currentUser, comments }) {
+
+function Feed({
+  title,
+  body,
+  posts,
+  user_id,
+  key,
+  currentUser,
+  comments,
+  setPosts,
+  postsState,
+  username
+}) {
+  console.log(username)
   const [isShow, setIsShow] = useState(false);
   const [isShowComment, setIsShowComment] = useState(false);
   const [post, setPost] = useState({
@@ -9,6 +22,7 @@ function Feed({ title, body, posts, user_id, key, currentUser, comments }) {
     body: body,
     // user_id: "",
   });
+
   // Toggle the edit button
   function toggleShow() {
     setIsShow(!isShow);
@@ -32,6 +46,9 @@ function Feed({ title, body, posts, user_id, key, currentUser, comments }) {
           console.log(data.errors);
         } else {
           setPost(data);
+          setPosts(
+            postsState.map((post) => (post.id === data.id ? data : post))
+          );
           console.log("Updated", data);
         }
       });
@@ -43,95 +60,87 @@ function Feed({ title, body, posts, user_id, key, currentUser, comments }) {
       method: "DELETE",
     }).then(() => {
       setPost(null);
+      setPosts(postsState.filter((post) => post.id !== posts.id));
     });
   };
   console.log(posts);
 
   return (
     <div className="display-post">
-      <form>
-        {isShow || isShowComment ? null : (
-          <img
-            src={posts.user.picture}
-            style={{
-              width: "10%",
-              height: "30%",
-              float: "left",
-              borderRadius: "50%",
-              top: "0",
-            }}
-          />
-          ) }
-        <h3
+      {isShow || isShowComment ? null : (
+        <img
+          src={posts.user.picture}
           style={{
-            top: "0",
+            width: "10%",
+            height: "30%",
             float: "left",
-            marginLeft: "7px",
-            marginTop: "15px",
-            color: "#ffeba7",
+            borderRadius: "50%",
+            top: "0",
           }}
-        >
-          {posts.user.username}{" "}
-        </h3>
-        <h2>{posts.title}</h2>
-        <h3>{posts.body}</h3>
-        {/* {posts.user ? <span>{posts.user.username}</span> : null} */}
-        {currentUser.id === posts.user_id ? (
-          <>
-            <input
-              type="button"
-              value="X"
-              className="Xbtn"
-              onClick={deleteAccount}
-            />
-            <input
-              type="button"
-              className="btn"
-              value="Edit"
-              onClick={toggleShow}
-            />
-          </>
-        ) : null}
-        {isShow ? (
-          <form onClick={handleSubmit}>
-            <div className="post-template">
-              <input
-                type="text"
-                className="input-field-post"
-                placeholder="Title"
-                onChange={(e) => setPost({ ...post, title: e.target.value })}
-              />
-              <input
-                type="text"
-                className="input-field-post-body"
-                placeholder="Body"
-                onChange={(e) => setPost({ ...post, body: e.target.value })}
-              />
-              <input type="submit" className="btn2" value="Save" />
-            </div>
-          </form>
-        ) : null}
-        <input
-          type="button"
-          className="btn2"
-          value="Comment"
-          onClick={toggleShowComment}
         />
-        {isShowComment ? (
-          //  <h1>{comment}</h1>
-          <DisplayComment
-            user_id={user_id}
-            currentUser={currentUser}
-            post={post}
-            comments={comments}
-            posts={posts}
-          />
-        ) : null}
+      )}
+      <h3
+        style={{
+          top: "0",
+          float: "left",
+          marginLeft: "7px",
+          marginTop: "14px",
+          color: "#ffeba7",
+        }}
+      >
+        {posts.user.username}{" "}
+      </h3>
+      {currentUser.id === posts.user_id ? (
+        <button className="Xbtn" onClick={deleteAccount}>
+          X
+        </button>
+      ) : null}
+      <h2>{posts.title}</h2>
+      <h3>{posts.body}</h3>
+      {currentUser.id === posts.user_id ? (
+        <button className="btn" onClick={toggleShow}>
+          Edit
+        </button>
+      ) : null}
+      {isShow ? (
+        <form onClick={handleSubmit}>
+          <div className="post-template">
+            <input
+              type="text"
+              className="input-field-post"
+              placeholder="Title"
+              onChange={(e) => setPost({ ...post, title: e.target.value })}
+            />
+            <input
+              type="text"
+              className="input-field-post-body"
+              placeholder="Body"
+              onChange={(e) => setPost({ ...post, body: e.target.value })}
+            />
+            <input type="submit" className="btn2" value="Save" />
+          </div>
+        </form>
+      ) : null}
 
-        <input type="button" className="btn2" value="Chat" />
-        <Link className="btn2" to="/Chat">
+      {isShowComment ? (
+        <DisplayComment
+          user_id={user_id}
+          currentUser={currentUser}
+          post={post}
+          comments={comments}
+          posts={posts}
+          username={username}
+        />
+      ) : null}
+      <button type="button" className="btn2" onClick={toggleShowComment}>
+        Comment
+      </button>
+
+      <Link style={{ textDecoration: "none" }} className="btn2" to="/Inbox">
         Chat
-        </Link>
+      </Link>
+
+      {currentUser.id === posts.user_id ? null : (
         <BrowserRouter>
           <Link
             style={{ textDecoration: "none" }}
@@ -144,7 +153,7 @@ function Feed({ title, body, posts, user_id, key, currentUser, comments }) {
             Email
           </Link>
         </BrowserRouter>
-      </form>
+      )}
     </div>
   );
 }

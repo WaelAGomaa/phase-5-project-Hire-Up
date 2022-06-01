@@ -4,6 +4,7 @@ class MessageSerializer < ActiveModel::Serializer
   def sender
     return User.find(self.object.user_id).name
   end
-    belongs_to :conversation
-  end
+
+  belongs_to :conversation
+
 end

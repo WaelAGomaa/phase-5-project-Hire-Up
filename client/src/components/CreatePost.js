@@ -1,11 +1,13 @@
 import { useState } from "react";
 // import Home from "./Home";
 
-function CreatePost({ currentUser }) {
+function CreatePost({ currentUser, setPosts, postsState }) {
   // const [isShow, setIsShow] = useState(true);
   // function toggleShow() {
   //   setIsShow(!isShow);
   // }
+
+
 
   const [post, setPost] = useState({
     title: "",
@@ -29,10 +31,13 @@ function CreatePost({ currentUser }) {
           console.log(data.errors);
         } else {
           setPost(data);
+          setPosts(postsState.concat(data));
           console.log("New Gig was posted: ", data);
         }
-      });
+      }
+      );
   }
+
 
   console.log(post);
   return (
@@ -64,7 +69,8 @@ function CreatePost({ currentUser }) {
                 value={post.body}
                 onChange={(e) => setPost({ ...post, body: e.target.value })}
               />
-              <input type="submit" className="btn2" value="Post" />
+              <input type="submit" className="btn2" value="Post"/>
+
             </div>
             {/* ) : null} */}
           </div>

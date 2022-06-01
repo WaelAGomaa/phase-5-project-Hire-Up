@@ -1,55 +1,41 @@
 import { useState } from "react";
 
 
-// import Comments from "./Comments";
-function CreateComment({ currentUser, post, comments , posts }) {
-  // const [comment, setComment] = useState("");
+function CreateComment({ currentUser, post, comments, posts}) {
+
 
   const [comment, setComment] = useState({
     text: "",
-    user_id: "",
-    post_id: "",
+    user_id: currentUser.id,
+    post_id: posts.id,
   });
-  // console.log(currentUser);
 
-  // console.log(post);
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/comments", {
+    fetch(`posts/${posts.id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         ...comment,
-        user_id: currentUser.id,
-        post_id: post.id,
       }),
     })
-  };
-  //   e.preventDefault();
-  //   fetch('/posts/:postId/comments', {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       ...comment,
-  //       user_id: currentUser.id,
-  //       post_id: post.id,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.errors) {
-  //         console.log(data.errors);
-  //       } else {
-  //         setComment(data);
-  //         console.log("New Comment was posted: ", data);
-  //       }
-  //     });
-  // }
-console.log(`/posts/:postId/comments`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.errors) {
+          console.log(data.errors);
+        } else {
+          setComment(data);
+          console.log("New comment was posted: ", data);
+        }
+      });
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className="post-template">
         <input
           type="text"
@@ -66,25 +52,4 @@ console.log(`/posts/:postId/comments`)
 
 export default CreateComment;
 
-// Add a comment
-//   function handleNewComment(e) {
-//     e.preventDefault();
-//     fetch(`/posts/${comments.id}`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         ...comment,
-//         user_id: currentUser.id,
-//         post_id: posts.id,
-//       }),
-//     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         if (data.errors) {
-//           console.log(data.errors);
-//         } else {
-//           setComment(data);
-//           console.log("Comment was posted: ", data);
-//         }
-//       });
-//   }
+

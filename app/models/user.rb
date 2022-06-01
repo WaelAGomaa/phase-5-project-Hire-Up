@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
     # User posts
     has_many :posts
-    has_many :comments
+    has_many :comments , through: :posts
 
     
     validates :username, uniqueness: true

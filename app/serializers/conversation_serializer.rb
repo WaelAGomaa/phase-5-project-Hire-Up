@@ -14,5 +14,5 @@ class ConversationSerializer < ActiveModel::Serializer
     msg_sender = User.find(self.object.messages.last.user_id).name
     return {:body => msg_body,:sender => msg_sender}
   end
-  
+
 end

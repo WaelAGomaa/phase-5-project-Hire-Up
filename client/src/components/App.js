@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import NavBar from "./NavBar";
@@ -8,11 +8,25 @@ import SignUp from "./SignUp";
 import PostFeed from "./PostFeed";
 import CreatePost from "./CreatePost";
 import Profile from "./Profile";
+import Inbox from "./Inbox";
 import "../App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
 console.log(currentUser)
+
+useEffect(() => {
+  fetch('/me')
+    .then(res => res.json())
+    .then(data => {
+      if(data.errors){
+        console.log(data.errors)
+      }else{
+        setCurrentUser(data)
+      }
+    })
+}, [])
+
 
   return (
     <div className="App">
@@ -40,6 +54,9 @@ console.log(currentUser)
       <Route path="/Profile">
         <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}  />
       </Route>
+      <Route path="/Inbox">
+          <Inbox currentUser={currentUser}/>
+        </Route>
       {/* </div> */}
       <ContactUs />
     </div>
