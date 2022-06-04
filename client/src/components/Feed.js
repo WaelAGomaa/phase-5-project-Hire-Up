@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DisplayComment from "./DisplayComment";
-import { Link, BrowserRouter } from "react-router-dom";
+import ChatPage from "./ChatPage";
+import { Link, BrowserRouter, Route } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 function Feed({
   title,
@@ -12,14 +14,18 @@ function Feed({
   comments,
   setPosts,
   postsState,
-  username
+  username,
+  likes,
 }) {
-  console.log(username)
+  const newLikes = likes;
+  const [liked, setLiked] = useState(newLikes);
+
   const [isShow, setIsShow] = useState(false);
   const [isShowComment, setIsShowComment] = useState(false);
   const [post, setPost] = useState({
     title: title,
     body: body,
+    likes: likes,
     // user_id: "",
   });
 
@@ -31,7 +37,7 @@ function Feed({
   function toggleShowComment() {
     setIsShowComment(!isShowComment);
   }
-  console.log(posts);
+  // console.log(posts);
   // Updates a post
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,7 +59,7 @@ function Feed({
         }
       });
   }
-  console.log(title);
+  // console.log(title);
   // Delete posts
   const deleteAccount = () => {
     fetch(`/posts/${posts.id}`, {
@@ -63,7 +69,7 @@ function Feed({
       setPosts(postsState.filter((post) => post.id !== posts.id));
     });
   };
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <div className="display-post">
@@ -88,7 +94,7 @@ function Feed({
           color: "#ffeba7",
         }}
       >
-        {posts.user.username}{" "}
+        {posts.user.username}
       </h3>
       {currentUser.id === posts.user_id ? (
         <button className="Xbtn" onClick={deleteAccount}>
@@ -118,6 +124,12 @@ function Feed({
               onChange={(e) => setPost({ ...post, body: e.target.value })}
             />
             <input type="submit" className="btn2" value="Save" />
+            <input
+              type="button"
+              className="input-field-post-body"
+              placeholder="heart"
+              onChange={(e) => setPost({ ...post, likes: e.target.value })}
+            />
           </div>
         </form>
       ) : null}
@@ -136,9 +148,13 @@ function Feed({
         Comment
       </button>
 
-      <Link style={{ textDecoration: "none" }} className="btn2" to="/Inbox">
-        Chat
+      <Link to="/Chatpage">
+        <button className="btn2">Chat</button>
       </Link>
+
+      <button className="btn2" onClick={() => setLiked(liked + 1)}>
+        <FaHeart /> {liked}
+      </button>
 
       {currentUser.id === posts.user_id ? null : (
         <BrowserRouter>

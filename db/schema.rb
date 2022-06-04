@@ -24,26 +24,30 @@ ActiveRecord::Schema.define(version: 2022_06_01_012651) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.bigint "user_a_id", null: false
-    t.bigint "user_b_id", null: false
+    t.bigint "sender_id", null: false
+    t.bigint "recipient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_a_id"], name: "index_conversations_on_user_a_id"
-    t.index ["user_b_id"], name: "index_conversations_on_user_b_id"
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
+    t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "conversation_id"
-    t.string "text"
+    t.text "body"
+    t.bigint "conversation_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "body"
     t.bigint "user_id", null: false
+    t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"

@@ -10,8 +10,6 @@ function CreateComment({ currentUser, post, comments, posts}) {
     post_id: posts.id,
   });
 
-
-
   function handleSubmit(e) {
     e.preventDefault();
     fetch(`posts/${posts.id}/comments`, {
@@ -21,6 +19,9 @@ function CreateComment({ currentUser, post, comments, posts}) {
       },
       body: JSON.stringify({
         ...comment,
+user_id: currentUser.id,
+post_id: posts.id,
+
       }),
     })
       .then((res) => res.json())

@@ -7,12 +7,11 @@ function CreatePost({ currentUser, setPosts, postsState }) {
   //   setIsShow(!isShow);
   // }
 
-
-
   const [post, setPost] = useState({
     title: "",
     body: "",
     user_id: "",
+    likes: "",
   });
   console.log(currentUser);
 
@@ -34,10 +33,8 @@ function CreatePost({ currentUser, setPosts, postsState }) {
           setPosts(postsState.concat(data));
           console.log("New Gig was posted: ", data);
         }
-      }
-      );
+      });
   }
-
 
   console.log(post);
   return (
@@ -69,8 +66,7 @@ function CreatePost({ currentUser, setPosts, postsState }) {
                 value={post.body}
                 onChange={(e) => setPost({ ...post, body: e.target.value })}
               />
-              <input type="submit" className="btn2" value="Post"/>
-
+              <input type="submit" className="btn2" value="Post" />
             </div>
             {/* ) : null} */}
           </div>

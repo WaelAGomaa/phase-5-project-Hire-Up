@@ -5,9 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: "https://media.istockphoto.com/photos/pastel-pink-brick-wall-texture-background-picture-id1300828101?k=20&m=1300828101&s=612x612&w=0&h=Dy006vXIQ89MDCGhb8VGyAsxEdzl9M9aVJQ9EtzPw9c=";
+  background-image: "https://dice-media.imgix.net/attachments/2022-05-16/23490a75-47d4-4a81-b3bd-68febbc41af0.jpg?rect=0%2C0%2C935%2C935";
 }
-
+/* background-image: "https://dice-media.imgix.net/attachments/2022-05-16/23490a75-47d4-4a81-b3bd-68febbc41af0.jpg?rect=0%2C0%2C935%2C935";
+/* background-repeat: no-repeat; */
+/* background-size: cover; */
+/* background-position: sticky; */
+/* background-size: 450px; */ */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

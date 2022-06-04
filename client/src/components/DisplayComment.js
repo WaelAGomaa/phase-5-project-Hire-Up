@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import CreateComment from "./CreateComment";
 import Comments from "./Comments";
-function DisplayComment({ user_id, currentUser, post, comments, posts, username }) {
-  // const [comments, setComments] = useState([]);
+function DisplayComment({ user_id, currentUser, post, comments, posts, username,  }) {
 
-  // console.log(post.id);
 
-  // console.log(comments);
 
   const renderComments = comments.map((comment) => (
     <Comments

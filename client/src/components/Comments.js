@@ -1,4 +1,6 @@
 function Comments({ text, username }) {
+
+
 console.log(username);
   return (
     <div>

@@ -1,31 +1,28 @@
 class ConversationsController < ApplicationController
-    before_action do
-        @conversation = Conversation.find(params[:conversation_id])
-        end
-        
-    def create
+    before_action :authenticate_user
 
-        if Conversation.between(params[:user_a_id],params[:user_b_id]).present?
-        @conversation = Conversation.between(params[:user_a_id],params[:user_b_id]).first
+    def index
+        @users = User.all 
+        @conversations = Conversation.all 
+    end
 
-            else
-
+    def create 
+        if Conversation.between(params[:sender_id],params[:recipient_id]).present?
+            @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
+        else
             @conversation = Conversation.create!(conversation_params)
-
-            end
-
-            render json: @conversation, status: :ok
-
-        end 
-
-        def user_index
-            user_conversations = Conversation.where(user_a_id:params[:user_id]).or(Conversation.where(user_b_id:params[:user_id]))
-            render json: user_conversations, status: :ok
-            end
-
-        private
-
-        def conversation_params
-        params.permit(:user_a_id,:user_b_id)
         end
+    render json: @conversation, status: :ok
+    end
+
+    def user_index
+        user_conversations = Conversation.where(sender_id:params[:user_id]).or(Conversation.where(recipient_id:params[:user_id]))
+        render json: user_conversations, status: :ok
+    end
+
+    private
+    def conversation_params
+        params.permit(:sender_id,:recipient_id)
+    end
+
 end

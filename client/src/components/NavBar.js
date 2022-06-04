@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function NavBar({ setCurrentUser, currentUser }) {
 
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const logout = () => {
     fetch("/logout", {

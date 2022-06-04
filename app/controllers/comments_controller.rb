@@ -2,7 +2,13 @@ class CommentsController < ApplicationController
 
     def index 
       render json: Comment.all
+
     end
+
+    def comments_index
+      render json: Comment.all
+    end
+    
   
     def create
 

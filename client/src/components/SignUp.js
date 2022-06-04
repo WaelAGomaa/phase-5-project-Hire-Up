@@ -27,7 +27,6 @@ function SignUp({ setCurrentUser , currentUser}) {
     })
       .then((r) => r.json())
       .then((r) => setUser);
-
   }
 
   return (

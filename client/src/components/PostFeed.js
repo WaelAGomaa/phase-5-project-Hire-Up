@@ -25,6 +25,7 @@ function PostFeed({ currentUser }) {
       setPosts={setPosts}
       postsState={posts}
       currentUser={currentUser}
+      likes={post.likes}
     />
   ));
 

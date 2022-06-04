@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url(https://dice-media.imgix.net/attachments/2022-05-16/23490a75-47d4-4a81-b3bd-68febbc41af0.jpg?rect=0%2C0%2C935%2C935);
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  background-size: 235px;
+  background-position: sticky;
+
 }
 
 .App-logo {

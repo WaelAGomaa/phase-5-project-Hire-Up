@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     def index
-        render json: Post.all , include: ['title', 'body'], status: :ok
+        render json: Post.all , include: ['title', 'body', 'likes'], status: :ok
     end
 
     def show
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     private 
 
     def post_params
-        params.permit(:title, :body, :user_id)
+        params.permit(:title, :body, :user_id, :likes)
     end 
 
 end
